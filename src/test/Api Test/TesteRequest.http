@@ -1,0 +1,26 @@
+### GET request with a header
+GET localhost:8080/teste
+Accept: application/json
+
+### Send POST request with json body
+POST localhost:8080/teste
+Content-Type: application/json
+
+{
+  "name": "maria",
+  "email": "john@email.com"
+}
+
+### Send PUT request with json body
+PUT localhost:8080/teste/6
+Content-Type: application/json
+
+{
+  "name": "mariazinha",
+  "email": "pedro@gmail.com "
+}
+
+### Send DELETE request
+DELETE localhost:8080/teste/6
+Accept: application/json
+
