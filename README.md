@@ -11,7 +11,7 @@ A API LabPenso é uma aplicação RESTful para gerenciamento de medições de da
 
 #### Criar uma Medição
 
-- **Path**: `/medicao`
+- **Path**: `api/medicao`
 - **Método**: `POST`
 - **Formato da Requisição**:
   ```json
@@ -30,22 +30,22 @@ A API LabPenso é uma aplicação RESTful para gerenciamento de medições de da
 
 #### Buscar uma Medição Específica
 
-- **Path**: `/medicao/dia/{dia}/hora/{hora}/medicao/{numero}`
+- **Path**: `/api/dia/{dia}/hora/{hora}/medicao/{numero}`
 - **Método**: `GET`
 
 #### Listar Medições por Dia
 
-- **Path**: `/medicao/dia/{data}`
+- **Path**: `/api/dia/{data}`
 - **Método**: `GET`
 
 #### Listar Medições por Hora do Dia
 
-- **Path**: `/medicao/dia/{data}/hora/{hora}`
+- **Path**: `/api/dia/{data}/hora/{hora}`
 - **Método**: `GET`
 
 #### Deletar uma Medição
 
-- **Path**: `/medicao/{id}`
+- **Path**: `api/medicao/{id}`
 - **Método**: `DELETE`
 
 
