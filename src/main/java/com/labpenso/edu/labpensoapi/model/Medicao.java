@@ -1,11 +1,6 @@
 package com.labpenso.edu.labpensoapi.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Column;
-
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -14,15 +9,17 @@ public class Medicao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
     private String idEstacao;
+
     @Column(nullable = false)
     private LocalDateTime timestamp;
+
     @Column(nullable = false)
     private int numeroMedicao;
-    @Column(nullable = false)
+
     private float temperatura;
-    @Column(nullable = false)
     private float umidade;
     private float percentualUV;
     private float nivelUV;
@@ -30,8 +27,11 @@ public class Medicao {
     private float luminosidade;
     private float mlChuva;
 
-    // Getters and Setters
+    @ManyToOne
+    @JoinColumn(name = "hora_id", nullable = false)
+    private Hora hora;
 
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -120,16 +120,35 @@ public class Medicao {
         this.mlChuva = mlChuva;
     }
 
+    public Hora getHora() {
+        return hora;
+    }
+
+    public void setHora(Hora hora) {
+        this.hora = hora;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Medicao medicao = (Medicao) o;
-        return Objects.equals(id, medicao.id);
+        return numeroMedicao == medicao.numeroMedicao &&
+                Float.compare(medicao.temperatura, temperatura) == 0 &&
+                Float.compare(medicao.umidade, umidade) == 0 &&
+                Float.compare(medicao.percentualUV, percentualUV) == 0 &&
+                Float.compare(medicao.nivelUV, nivelUV) == 0 &&
+                Float.compare(medicao.pressao, pressao) == 0 &&
+                Float.compare(medicao.luminosidade, luminosidade) == 0 &&
+                Float.compare(medicao.mlChuva, mlChuva) == 0 &&
+                Objects.equals(id, medicao.id) &&
+                Objects.equals(idEstacao, medicao.idEstacao) &&
+                Objects.equals(timestamp, medicao.timestamp) &&
+                Objects.equals(hora, medicao.hora);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, idEstacao, timestamp, numeroMedicao, temperatura, umidade, percentualUV, nivelUV, pressao, luminosidade, mlChuva, hora);
     }
 }

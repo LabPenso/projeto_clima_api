@@ -1,42 +1,29 @@
-### POST - Adicionar uma medição
-POST http://localhost:8080/medicao
+# MedicaoController Tests
+
+### Pegar uma medicao específica
+GET http://localhost:8080/api/dia/2024-05-21/hora/00/medicao/1
+
+### Pegar todas as medições de um dia
+GET http://localhost:8080/api/dia/2024-05-21
+
+### Pegar todas as medições de uma hora
+GET http://localhost:8080/api/dia/2024-05-21/hora/00
+
+### Enviar uma medição
+POST http://localhost:8080/api/medicao
 Content-Type: application/json
 
 {
-  "idEstacao": "XYZ123",
-  "timestamp": "2024-05-21T10:15:30",
-  "numeroMedicao": 1,
-  "temperatura": 25.5,
-  "umidade": 60.2,
-  "percentualUV": 0.8,
-  "nivelUV": 5.6,
-  "pressao": 1013.2,
-  "luminosidade": 500,
+  "idEstacao": "ESTLABPENSO001",
+  "timestamp": "2024-05-21T00:50:00",
+  "temperatura": 27.5,
+  "umidade": 50.0,
+  "percentualUV": 70.0,
+  "nivelUV": 6.5,
+  "pressao": 1013.25,
+  "luminosidade": 5500.0,
   "mlChuva": 0.0
 }
 
-### GET - Listar todas as medições
-GET http://localhost:8080/medicao
-
-### GET - Buscar uma medição por ID (substitua {id} pelo ID desejado)
-GET http://localhost:8080/medicao/2
-
-### PUT - Atualizar uma medição por ID (substitua {id} pelo ID desejado)
-PUT http://localhost:8080/medicao/2
-Content-Type: application/json
-
-{
-"idEstacao": "XXXX",
-"timestamp": "2024-05-21T10:15:30",
-"numeroMedicao": 1,
-"temperatura": 26.0,
-"umidade": 61.0,
-"percentualUV": 0.9,
-"nivelUV": 5.7,
-"pressao": 1013.5,
-"luminosidade": 550,
-"mlChuva": 0.0
-}
-
-### DELETE - Deletar uma medição por ID (substitua {id} pelo ID desejado)
-DELETE http://localhost:8080/medicao/2
+### Excluir medição por ID
+DELETE http://localhost:8080/api/medicao/1
