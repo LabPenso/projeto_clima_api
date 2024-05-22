@@ -16,9 +16,8 @@ A API LabPenso é uma aplicação RESTful para gerenciamento de medições de da
 - **Formato da Requisição**:
   ```json
   {
-    "idEstacao": "string",
+    "idEstacao": "LABP-ES001",
     "timestamp": "2023-05-20T15:30:00",
-    "numeroMedicao": 1,
     "temperatura": 25.0,
     "umidade": 60.0,
     "percentualUV": 0.5,
