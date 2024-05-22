@@ -61,40 +61,31 @@ public class MedicaoController {
     @PostMapping("/medicao")
     @ResponseStatus(HttpStatus.CREATED)
     public Medicao add(@RequestBody Medicao medicao) {
-        // Obtém o horário de início da hora correspondente à medição
         LocalDateTime horaInicio = medicao.getTimestamp().truncatedTo(ChronoUnit.HOURS);
 
-        // Busca ou cria a data correspondente à data da medição
         LocalDate data = medicao.getTimestamp().toLocalDate();
         Dia dia = diaRepository.findByData(data);
         if (dia == null) {
             dia = new Dia();
             dia.setData(data);
-            // Salva o dia no banco de dados
             dia = diaRepository.save(dia);
         }
 
-        // Busca a hora correspondente no banco de dados
         Hora hora = horaRepository.findByInicioAndDia(horaInicio, dia);
 
-        // Se não encontrou, cria uma nova hora
         if (hora == null) {
             hora = new Hora();
             hora.setInicio(horaInicio);
-            hora.setFim(horaInicio.plusHours(1)); // Adiciona uma hora ao início para obter o fim da hora
-            hora.setDia(dia); // Associa a hora ao dia correspondente
-            // Salva a hora no banco de dados
+            hora.setFim(horaInicio.plusHours(1));
+            hora.setDia(dia);
             hora = horaRepository.save(hora);
         }
 
-        // Define a hora na medição
         medicao.setHora(hora);
 
-        // Calcula o número de medição
         int numeroMedicao = medicaoService.calcularNumeroMedicao(horaInicio, medicao.getTimestamp());
         medicao.setNumeroMedicao(numeroMedicao);
 
-        // Salva a medição no banco de dados
         return medicaoRepository.save(medicao);
     }
 
