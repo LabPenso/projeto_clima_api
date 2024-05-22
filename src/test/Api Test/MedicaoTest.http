@@ -1,0 +1,42 @@
+### POST - Adicionar uma medição
+POST http://localhost:8080/medicao
+Content-Type: application/json
+
+{
+  "idEstacao": "XYZ123",
+  "timestamp": "2024-05-21T10:15:30",
+  "numeroMedicao": 1,
+  "temperatura": 25.5,
+  "umidade": 60.2,
+  "percentualUV": 0.8,
+  "nivelUV": 5.6,
+  "pressao": 1013.2,
+  "luminosidade": 500,
+  "mlChuva": 0.0
+}
+
+### GET - Listar todas as medições
+GET http://localhost:8080/medicao
+
+### GET - Buscar uma medição por ID (substitua {id} pelo ID desejado)
+GET http://localhost:8080/medicao/2
+
+### PUT - Atualizar uma medição por ID (substitua {id} pelo ID desejado)
+PUT http://localhost:8080/medicao/2
+Content-Type: application/json
+
+{
+"idEstacao": "XXXX",
+"timestamp": "2024-05-21T10:15:30",
+"numeroMedicao": 1,
+"temperatura": 26.0,
+"umidade": 61.0,
+"percentualUV": 0.9,
+"nivelUV": 5.7,
+"pressao": 1013.5,
+"luminosidade": 550,
+"mlChuva": 0.0
+}
+
+### DELETE - Deletar uma medição por ID (substitua {id} pelo ID desejado)
+DELETE http://localhost:8080/medicao/2

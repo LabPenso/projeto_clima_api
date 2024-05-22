@@ -1,20 +1,50 @@
 package com.labpenso.edu.labpensoapi.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+
 import java.time.LocalDateTime;
+import java.util.Objects;
+
+@Entity
 public class Medicao {
-    private String idEstacao; // id da estacao que fez a medicao
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false)
+    private String idEstacao;
+    @Column(nullable = false)
     private LocalDateTime timestamp;
-    private int numeroMedicao; //numero que indica a medicao dentro de uma hora
-    private double temperatura;
-    private double umidade;
+    @Column(nullable = false)
+    private int numeroMedicao;
+    @Column(nullable = false)
+    private float temperatura;
+    @Column(nullable = false)
+    private float umidade;
+    private float percentualUV;
+    private float nivelUV;
+    private float pressao;
+    private float luminosidade;
+    private float mlChuva;
 
-    //depois adicionar mais props
+    // Getters and Setters
 
-    public Medicao(LocalDateTime timestamp, int numeroMedicao, double temperatura, double umidade, String idEstacao) {
-        this.timestamp = timestamp;
-        this.numeroMedicao = numeroMedicao;
-        this.temperatura = temperatura;
-        this.umidade = umidade;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getIdEstacao() {
+        return idEstacao;
+    }
+
+    public void setIdEstacao(String idEstacao) {
         this.idEstacao = idEstacao;
     }
 
@@ -26,27 +56,80 @@ public class Medicao {
         this.timestamp = timestamp;
     }
 
-    public int getNumero() {
+    public int getNumeroMedicao() {
         return numeroMedicao;
     }
 
-    public void setNumero(int numeroMedicao) {
+    public void setNumeroMedicao(int numeroMedicao) {
         this.numeroMedicao = numeroMedicao;
     }
 
-    public double getTemperatura() {
+    public float getTemperatura() {
         return temperatura;
     }
 
-    public void setTemperatura(double temperatura) {
+    public void setTemperatura(float temperatura) {
         this.temperatura = temperatura;
     }
 
-    public double getUmidade() {
+    public float getUmidade() {
         return umidade;
     }
 
-    public void setUmidade(double umidade) {
+    public void setUmidade(float umidade) {
         this.umidade = umidade;
+    }
+
+    public float getPercentualUV() {
+        return percentualUV;
+    }
+
+    public void setPercentualUV(float percentualUV) {
+        this.percentualUV = percentualUV;
+    }
+
+    public float getNivelUV() {
+        return nivelUV;
+    }
+
+    public void setNivelUV(float nivelUV) {
+        this.nivelUV = nivelUV;
+    }
+
+    public float getPressao() {
+        return pressao;
+    }
+
+    public void setPressao(float pressao) {
+        this.pressao = pressao;
+    }
+
+    public float getLuminosidade() {
+        return luminosidade;
+    }
+
+    public void setLuminosidade(float luminosidade) {
+        this.luminosidade = luminosidade;
+    }
+
+    public float getMlChuva() {
+        return mlChuva;
+    }
+
+    public void setMlChuva(float mlChuva) {
+        this.mlChuva = mlChuva;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Medicao medicao = (Medicao) o;
+        return Objects.equals(id, medicao.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
