@@ -2,7 +2,8 @@
 FROM maven:3.8.4-openjdk-17-slim AS build
 
 # Copie os arquivos de origem do projeto
-COPY src/main/java /app
+COPY src /app/src
+COPY pom.xml /app
 
 # Defina o diretório de trabalho
 WORKDIR /app

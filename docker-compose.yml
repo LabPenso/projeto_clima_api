@@ -2,18 +2,26 @@ version: '3'
 services:
   db:
     build:
-      context: ./db
+      context: .
+      dockerfile: Dockerfile.db
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: 0101
       MYSQL_DATABASE: labpenso
+    volumes:
+      - db_data:/var/lib/mysql
   app:
     build:
-      context: ./app
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8080:8080"
     depends_on:
       - db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mariadb://db:3306/labpenso
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/labpenso
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 0101
+volumes:
+  db_data:
