@@ -1,0 +1,9 @@
+# Use a imagem oficial do MariaDB como base
+FROM mariadb:latest
+
+# Copie o arquivo SQL de inicialização para dentro do contêiner
+COPY init.sql /docker-entrypoint-initdb.d/
+
+# Defina as variáveis de ambiente necessárias para o MariaDB
+ENV MYSQL_ROOT_PASSWORD=0101
+ENV MYSQL_DATABASE=labpenso

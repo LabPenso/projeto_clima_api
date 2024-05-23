@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.labpenso.edu</groupId>
 	<artifactId>labpenso-api</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1</version>
 	<name>labpenso-api</name>
 	<description>Rest Api for LabPenso weather station project</description>
 	<properties>
@@ -23,11 +23,12 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>3.0.3</version>
+		</dependency>
 
-		</dependency><dependency>
+		<dependency>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-data-jpa</artifactId>
 	</dependency>
