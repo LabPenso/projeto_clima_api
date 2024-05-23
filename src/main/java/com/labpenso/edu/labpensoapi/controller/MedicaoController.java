@@ -32,6 +32,11 @@ public class MedicaoController {
 
     private MedicaoService medicaoService;
 
+    @GetMapping("/test")
+    public String test() {
+        return "Up and running!";
+    }
+
     @GetMapping("/dia/{data}/hora/{hora}/medicao/{numero}")
     public Medicao buscarPorNumero(@PathVariable LocalDate data, @PathVariable int hora, @PathVariable int numero) {
         LocalDateTime inicio = data.atTime(hora, 0);
